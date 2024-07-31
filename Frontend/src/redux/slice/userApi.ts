@@ -1,28 +1,25 @@
-// services/api.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface Post {
+export type Post = {
   email: string;
-  fullname: string;
+  fullName: string;
   password: string;
   avatar: string;
   aboutMe: string;
-
-  body: string;
-}
-
+};
+const userApiBaseUrl = import.meta.env.VITE_USER_API_BASE_URL;
+// console.log(userApiBaseUrl);
 export const userApi = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/v1/user" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${userApiBaseUrl}`,
+  }),
   endpoints: (builder) => ({
-    getPosts: builder.query<Post[], void>({
-      query: () => "posts",
-    }),
-    addPost: builder.mutation<Post, Post>({
-      query: (register) => ({
+    addPost: builder.mutation<Post[], FormData>({
+      query: (formData) => ({
         url: "/register",
         method: "POST",
-        body: register,
+        body: formData,
       }),
     }),
   }),
