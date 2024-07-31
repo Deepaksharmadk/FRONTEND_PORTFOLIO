@@ -5,11 +5,14 @@ import "./index.css";
 import { ThemeProvider } from "./components/Theme/theme-provider";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store.ts";
+import { Toaster } from "./components/ui/toaster.tsx";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Provider store={store}>
         <App />
+        <Toaster />
       </Provider>
     </ThemeProvider>
   </React.StrictMode>
