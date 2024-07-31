@@ -17,7 +17,7 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     addPost: builder.mutation<Post[], FormData>({
       query: (formData) => ({
-        url: "/register",
+        url: "/api/v1/user/register",
         method: "POST",
         body: formData,
       }),
@@ -25,4 +25,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetPostsQuery, useAddPostMutation } = userApi;
+export const { useAddPostMutation } = userApi;
