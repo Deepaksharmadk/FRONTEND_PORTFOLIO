@@ -10,7 +10,7 @@ export interface ProfileData {
 }
 
 export function AvatarFile() {
-  const { data } = useGetProfileQuery<ProfileData>();
+  const { data } = useGetProfileQuery();
   console.log("data is", data);
 
   return (

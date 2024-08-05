@@ -27,7 +27,7 @@ export const userApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getProfile: builder.query<void, void>({
+    getProfile: builder.query<ProfileData, void>({
       query: () => "/api/v1/user/me",
     }),
     addPost: builder.mutation<User, FormData>({
