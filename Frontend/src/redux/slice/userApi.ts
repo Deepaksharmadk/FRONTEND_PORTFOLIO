@@ -1,7 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { User } from "./authSlice";
-import { ProfileData } from "@/components/Avatar/Avatar";
 const userApiBaseUrl = import.meta.env.VITE_USER_API_BASE_URL;
+export interface ProfileData {
+  userId: {
+    avatar: {
+      url: string;
+    };
+  };
+}
 // console.log(userApiBaseUrl);
 export const userApi = createApi({
   reducerPath: "api",
