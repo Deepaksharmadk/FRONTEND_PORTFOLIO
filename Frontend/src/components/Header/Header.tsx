@@ -1,20 +1,22 @@
-import { Link } from "react-router-dom";
-import { ModeToggle } from "../Theme/mode-toggle";
-import { Button } from "../ui/button";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import Logout from "../Button/Logout";
+import Login from "../Button/Login";
+
 function Header() {
-  //  console.log(a)
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
   return (
     <div className="flex px-3 py-2 justify-end items-center">
       <div className="text-blue-400 flex">
         <div className="text-blue-400">
-          <Button variant="outline" className="mr-5">
-            <Link className="text-sm" to="/sign-up">
-              Login
-            </Link>
-          </Button>
-        </div>
-        <div className="text-blue-400">
-          <ModeToggle />
+          {isLoggedIn ? (
+            <>
+              <Logout />
+            </>
+          ) : (
+            <Login />
+          )}
         </div>
       </div>
     </div>

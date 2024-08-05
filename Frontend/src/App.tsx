@@ -1,8 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Container from "./components/Container/Container";
-import Header from "./components/Header/Header";
 import { Register } from "./pages/Register";
+import { Login } from "./pages/Login";
+import NotFoundPage from "./components/NotFound/NotFoundPage";
 
 function App() {
   return (
@@ -13,7 +14,24 @@ function App() {
             path="/"
             element={
               <Container>
-                <Header />
+                <h2>Home Page</h2>
+              </Container>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Container>
+                <Register />
+              </Container>
+            }
+          />
+
+          <Route
+            path="/sign-in"
+            element={
+              <Container>
+                <Login />
               </Container>
             }
           />
@@ -21,16 +39,10 @@ function App() {
             path="/*"
             element={
               <>
-                <h2>404</h2>
+                <Container>
+                  <NotFoundPage />
+                </Container>
               </>
-            }
-          />
-          <Route
-            path="/sign-up"
-            element={
-              <Container>
-                <Register />
-              </Container>
             }
           />
         </Routes>
