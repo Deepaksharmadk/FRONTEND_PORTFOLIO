@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bbxnxack/public_html/
+    - export DEPLOYPATH=/home/public_html/
     - /bin/cp -R images $DEPLOYPATH
