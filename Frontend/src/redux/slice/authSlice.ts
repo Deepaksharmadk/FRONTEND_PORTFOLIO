@@ -26,12 +26,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login(state, action: PayloadAction<User>) {
+    login(state: AuthState, action: PayloadAction<User>) {
       state.isLoggedIn = true;
       state.user = action.payload;
       localStorage.setItem("userdata", JSON.stringify(action.payload)); // Save user data to local storage
     },
-    logout(state) {
+    logout(state: AuthState) {
       state.isLoggedIn = false;
       state.user = null;
       localStorage.removeItem("userdata");
