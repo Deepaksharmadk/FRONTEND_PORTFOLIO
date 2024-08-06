@@ -1,12 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { User } from "./authSlice";
-const userApiBaseUrl = import.meta.env.VITE_USER_API_BASE_URL;
-export interface ProfileData {
+const userApiBaseUrl: ImportMeta = import.meta.env.VITE_USER_API_BASE_URL;
+interface ProfileData {
   userId: {
     avatar: {
       url: string;
     };
   };
+}
+// vite-env.d.ts
+interface ImportMeta {
+  env: {
+    VITE_USER_API_BASE_URL: string;
+  };
+}
+interface Login {
+  email: string;
+  password: string;
 }
 // console.log(userApiBaseUrl);
 export const userApi = createApi({
@@ -14,7 +24,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${userApiBaseUrl}`,
     credentials: "include",
-    prepareHeaders: (headers) => {
+    prepareHeaders: (headers: Headers) => {
       const user = localStorage.getItem("userdata");
 
       if (user) {
@@ -43,8 +53,8 @@ export const userApi = createApi({
         body: formData,
       }),
     }),
-    loginRtk: builder.mutation<User, { email: string; password: string }>({
-      query: (data) => ({
+    loginRtk: builder.mutation<User, Login>({
+      query: (data: Login) => ({
         url: "/api/v1/user/login",
         method: "POST",
         body: data,
